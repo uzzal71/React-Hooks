@@ -1,25 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useReducer } from 'react';
 import './App.css';
 
 const App = (props) => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://api.github.com/users`)
-    .then(response => response.json())
-    .then(setData)
-  }, []);
-
-  if (!data) return <p>Not User</p>;
+  const [number, setNumber] = useReducer((number, newNumber) => number + newNumber, 0);
 
   return (
     <div className="App">
-      <ul>
-          {data.map(user => (
-            <li key={user.id}>{user.login}</li>
-          ))}
-      </ul>
-      <button onClick={() => setData([])}>Remove data</button>
+      <h1 onClick={() => setNumber(1)}>{number}</h1>
     </div>
   );
 }
