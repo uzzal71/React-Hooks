@@ -1,14 +1,26 @@
 import { useState } from 'react';
 import './App.css';
+import { FaStar } from "react-icons/fa";
+
+const createArray = (length) => [
+  ...Array(length)
+];
+
+const Star = ({ selected=false }) => {
+  return <FaStar color={selected ? "red" : "gray"}/>
+};
+
+const StarRating = ({ totalStars = 5 }) => {
+  return createArray(totalStars).map((n, i) => (
+    <Star key={i}/>
+  ));
+};
 
 const App = (props) => {
-  const [checked, setChecked] = useState(false);
 
   return (
     <div className="App">
-      <h1>React Hooks Created By {props.name}</h1>
-      <input type="checkbox" onChange={() => setChecked((checked) => !checked)}/>
-      <p>{checked ? "checked" : "not checked"}</p>
+      <StarRating totalStars={10}/>
     </div>
   );
 }
