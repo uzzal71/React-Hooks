@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './App.css';
 
 const App = (props) => {
-  const [status, setStatus] = useState("Not Delivered!");
+  const [checked, setChecked] = useState(false);
 
   return (
     <div className="App">
       <h1>React Hooks Created By {props.name}</h1>
-      <h3>This package is: {status}</h3>
-      <button onClick={() => setStatus("Delivered")}>Delivered</button>
+      <input type="checkbox" onChange={() => setChecked((checked) => !checked)}/>
+      <p>{checked ? "checked" : "not checked"}</p>
     </div>
   );
 }
